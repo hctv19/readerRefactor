@@ -1,0 +1,74 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'gulp-webapp' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
+5 verbose cache add [ 'gulp-webapp', null ]
+6 verbose cache add name=undefined spec="gulp-webapp" args=["gulp-webapp",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'gulp-webapp',
+7 verbose parsed url   path: 'gulp-webapp',
+7 verbose parsed url   href: 'gulp-webapp' }
+8 silly lockFile 8591b7f0-gulp-webapp gulp-webapp
+9 verbose lock gulp-webapp C:\Users\wdavis\AppData\Roaming\npm-cache\8591b7f0-gulp-webapp.lock
+10 silly lockFile 8591b7f0-gulp-webapp gulp-webapp
+11 silly lockFile 8591b7f0-gulp-webapp gulp-webapp
+12 verbose addNamed [ 'gulp-webapp', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile c6e1091f-gulp-webapp gulp-webapp@
+15 verbose lock gulp-webapp@ C:\Users\wdavis\AppData\Roaming\npm-cache\c6e1091f-gulp-webapp.lock
+16 silly addNameRange { name: 'gulp-webapp', range: '*', hasData: false }
+17 verbose request where is /gulp-webapp
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 0c0ed4ab67c5583c
+20 verbose url raw /gulp-webapp
+21 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-webapp' ]
+22 verbose url resolved https://registry.npmjs.org/gulp-webapp
+23 verbose request where is https://registry.npmjs.org/gulp-webapp
+24 info trying registry request attempt 1 at 16:18:17
+25 http GET https://registry.npmjs.org/gulp-webapp
+26 http 404 https://registry.npmjs.org/gulp-webapp
+27 silly registry.get cb [ 404,
+27 silly registry.get   { date: 'Thu, 29 Jan 2015 22:18:18 GMT',
+27 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     etag: '"2U5478N6FLEPMRO6Q8L0OQBRN"',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=0',
+27 silly registry.get     'content-length': '401',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     'x-served-by': 'cache-atl6235-ATL',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1422569897.973510,VS0,VE108',
+27 silly registry.get     vary: 'Accept',
+27 silly registry.get     'keep-alive': 'timeout=10, max=50',
+27 silly registry.get     connection: 'Keep-Alive' } ]
+28 silly lockFile c6e1091f-gulp-webapp gulp-webapp@
+29 silly lockFile c6e1091f-gulp-webapp gulp-webapp@
+30 error 404 Not Found
+30 error 404
+30 error 404 'gulp-webapp' is not in the npm registry.
+30 error 404 You should bug the author to publish it
+30 error 404
+30 error 404 Note that you can also install from a
+30 error 404 tarball, folder, or http url, or git url.
+31 error System Windows_NT 6.1.7601
+32 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "gulp-webapp"
+33 error cwd C:\Users\wdavis\Source\ReactReader
+34 error node -v v0.10.36
+35 error npm -v 1.4.28
+36 error code E404
+37 verbose exit [ 1, true ]
