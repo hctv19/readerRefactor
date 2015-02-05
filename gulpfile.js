@@ -2,6 +2,12 @@
 'use strict';
 // generated on 2015-01-29 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
+var usemin = require('gulp-usemin');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
+var minifyHtml = require('gulp-minify-html');
+var minifyCss = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps');
 var $ = require('gulp-load-plugins')();
 
 var templateCache = require('gulp-angular-templatecache');
@@ -12,6 +18,29 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('public'));
 });
 
+gulp.task('concat', function () {
+    gulp.src('app/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(concat('script.js'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('uglify', function () {
+    gulp.src('.tmp/script.js')
+      .pipe(uglify())
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('usemin', function () {
+    return gulp.src('*.html')
+        .pipe(usemin({
+            css: [minifyCss(), 'concat'],
+            html: [minifyHtml({ empty: true })],
+            js: [uglify(), rev()]
+        }))
+        .pipe(gulp.dest('dist'));
+});
 
 gulp.task('styles', function () {
   return gulp.src('app/**/*.scss')
@@ -30,8 +59,6 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.jshint.reporter('fail'));
 });
-
-
 
 gulp.task('html', ['styles', 'templates'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
@@ -101,13 +128,13 @@ gulp.task('serve', ['connect', 'watch'], function () {
 gulp.task('wiredep', function () {
   var wiredep = require('wiredep').stream;
 
-  gulp.src('app/styles/*.scss')
+  gulp.src('app/**/*.scss')
     .pipe(wiredep())
-    .pipe(gulp.dest('app/styles'));
+    .pipe(gulp.dest('assets/css'));
 
   gulp.src('app/*.html')
     .pipe(wiredep())
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest('app/'));
 });
 
 gulp.task('watch', ['connect'], function () {
@@ -127,7 +154,7 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['jshint', 'concat', 'uglify', 'html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

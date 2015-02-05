@@ -1,6 +1,6 @@
-﻿'use strict';
-(function () {
-    var BookService = function (AppConfig, $resource, $http) {
+﻿(function () {
+    'use strict';
+    function BookService(AppConfig, $resource) {
 
         var bookCache = {};
 
@@ -45,16 +45,16 @@
 
         var BookUserPreferenceResource = $resource(
             AppConfig.API_URL + '/api/books/:id/prefs',
-            {   id: '@id' },
+            { id: '@id' },
             {
                 'save': { method: 'POST' }
             }
         );
 
         return {
-            getBook: function(bookId, callback) {
+            getBook: function (bookId, callback) {
                 if (!bookCache[bookId]) {
-                    BookResource.get({ id: bookId }, function(results) {
+                    BookResource.get({ id: bookId }, function (results) {
                         bookCache[bookId] = results;
                         callback(results);
                     });
@@ -62,8 +62,8 @@
                     callback(bookCache[bookId]);
                 }
             },
-            getBooks: function(params, callback) {
-                var books = BookResource.query(params, function() {
+            getBooks: function (params, callback) {
+                var books = BookResource.query(params, function () {
                     callback(books);
                 });
             },
@@ -72,8 +72,8 @@
                     callback(data);
                 });
             },
-            getGlossary: function(bookId, callback) {
-                BookGlossaryResource.query({ id: bookId }, function(results) {
+            getGlossary: function (bookId, callback) {
+                BookGlossaryResource.query({ id: bookId }, function (results) {
                     callback(results);
                 });
             },
@@ -88,6 +88,8 @@
                 });
             }
         };
-    };
-    angular.module('app').factory('Book', ['AppConfig', '$resource','$http', BookService]);
+    }
+
+    angular.module('app').factory('Book', ['AppConfig', '$resource', BookService]);
+
 }());
