@@ -2,12 +2,21 @@
 'use strict';
 // generated on 2015-01-29 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
+var TEMP = '.tmp';
 var $ = require('gulp-load-plugins')();
 
-gulp.task('templates', function () {
-    gulp.src('app/**/*_tmpl.html')
+/**
+ * Create $templateCache from the html templates
+ * @return {Stream}
+ */
+gulp.task('templatecache', function () {
+    log('Creating an AngularJS $templateCache');
+
+    return gulp
+        .src('app/**/*_tmpl.html')
+        .pipe($.minifyHtml({ empty: true }))
         .pipe($.angularTemplatecache())
-        .pipe(gulp.dest('public'));
+        .pipe(gulp.dest(TEMP));
 });
 
 gulp.task('concat', function () {
@@ -15,14 +24,14 @@ gulp.task('concat', function () {
         .pipe($.sourcemaps.init())
         .pipe($.concat('script.js'))
         .pipe($.sourcemaps.write())
-        .pipe(gulp.dest('.tmp'));
+        .pipe(gulp.dest(TEMP));
 });
 
 gulp.task('usemin', function () {
     return gulp.src('*.html')
         .pipe(usemin({
-            css: [minifyCss(), 'concat'],
-            html: [minifyHtml({ empty: true })],
+            css: [$.minifyCss(), 'concat'],
+            html: [$.minifyHtml({ empty: true })],
             js: [uglify(), rev()]
         }))
         .pipe(gulp.dest('dist'));
@@ -36,7 +45,7 @@ gulp.task('styles', function () {
       precision: 10
     }))
     .pipe($.autoprefixer({browsers: ['last 1 version']}))
-    .pipe(gulp.dest('.tmp/styles'));
+    .pipe(gulp.dest('app/assets/css'));
 });
 
 gulp.task('jshint', function () {
@@ -46,18 +55,20 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['styles', 'concat', 'templates'], function () {
+gulp.task('html', ['styles', 'templatecache', 'concat'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('.tmp/*.js', $.uglify()))
-    .pipe($.if('.tmp/*.css', $.csso()))
+    .pipe($.if(TEMP+'/*.js', $.uglify()))
+    .pipe($.if(TEMP+'/*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
+
+
 
 gulp.task('images', function () {
   return gulp.src('assets/images/**/*')
@@ -85,9 +96,9 @@ gulp.task('extras', function () {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
+gulp.task('clean', require('del').bind(null, [TEMP, 'dist']));
 
-gulp.task('connect', ['styles', 'templates', 'fonts'], function () {
+gulp.task('connect', ['styles', 'fonts'], function () {
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
   var app = require('connect')()
@@ -129,14 +140,13 @@ gulp.task('watch', ['connect'], function () {
   // watch for changes
   gulp.watch([
     'app/*.html',
-    '.tmp/styles/**/*.css',
-    'app/scripts/**/*.js',
-    '.tmp/scripts/**/*.js',
-    'app/images/**/*'
+    TEMP+'/**/*.css',
+    'app/**/*.js',
+    TEMP+'/**/*.js',
+    'assets/images/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/**/*.jsx', ['templates']);
+  gulp.watch('app/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -147,3 +157,27 @@ gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () 
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
+
+
+/**
+ * Formatter for bytediff to display the size changes after processing
+ * @param  {Object} data - byte data
+ * @return {String}      Difference in bytes, formatted
+ */
+function bytediffFormatter(data) {
+    var difference = (data.savings > 0) ? ' smaller.' : ' larger.';
+    return data.fileName + ' went from ' +
+        (data.startSize / 1000).toFixed(2) + ' kB to ' +
+        (data.endSize / 1000).toFixed(2) + ' kB and is ' +
+        formatPercent(1 - data.percent, 2) + '%' + difference;
+}
+
+/**
+ * Format a number as a percentage
+ * @param  {Number} num       Number to format as a percent
+ * @param  {Number} precision Precision of the decimal
+ * @return {String}           Formatted perentage
+ */
+function formatPercent(num, precision) {
+    return (num * 100).toFixed(precision);
+}

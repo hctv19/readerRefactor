@@ -10,7 +10,7 @@
 (function() {
     'use strict';
 
-    var configData = {
+    var config = {
         ver: '0.01',
         API_URL: 'https://liloqui-api.azurewebsites.net',
         //API_URL: 'http://localhost:57800',
@@ -19,15 +19,9 @@
 
     angular
         .module('app', [
-            'ngAnimate',
-            'ngCookies',
-            'ngResource',
-            'ngSanitize',
-            'ngTouch',
-            'ui.router',
-            'angularFileUpload'
+            'ngResource'
         ])
-        .constant('AppConfig', configData)
+        .constant('config', config)
         .run(['$rootScope', function($rootScope) {
                 $rootScope.styles = [];
                 $rootScope.scripts = [];
