@@ -16,7 +16,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            
+            console.log("Scope of NavBar: ", scope);
         }
     }
 

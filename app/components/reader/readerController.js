@@ -4,7 +4,7 @@
     var Reader = function (config, bookService, $rootScope) {
         var vm = this;
         vm.book = { title: 'The Derpiest Dog' };
-
+        console.log("Vm set", vm);
         //Methods
         vm.init = function () {
 
