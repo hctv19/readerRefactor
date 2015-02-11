@@ -22,8 +22,10 @@
     <![endif]-->
 
     <div id="reader" ng-controller="Reader as reader">
+        <nav lq-book-menu class="book-menu"></nav>
         <nav lq-navbar title="reader.book.title"></nav>
-
+        <div lq-book-content></div>
+        <div lq-contextual-glossary></div>
     </div>
 
     <!-- build:js scripts/vendor.js -->
@@ -47,7 +49,7 @@
     <script src="shared/navBar/navBar.js"></script>
 
     <script src="components/reader/readerController.js"></script>
-
+    <script src="components/reader/directives/bookMenu/bookMenu.js"></script>
 
     <!-- endbuild -->
 </body>

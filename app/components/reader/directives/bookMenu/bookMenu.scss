@@ -1,0 +1,46 @@
+﻿@import '../../../../variables.scss';
+
+.book-menu {
+    ul {
+        padding-left: 0;
+        background-color: $menu-item-color;
+
+        li {
+            cursor: pointer;
+            background-color: transparent;
+            height: $book-menu-item-height;
+
+            a {
+                font-size: 22px;
+                line-height: $book-menu-item-height;
+                padding-left: $book-menu-item-indent;
+                display: block;
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                text-decoration: none;
+                text-align: left;
+                color: $menu-item-text-color;
+                height: $book-menu-item-height;
+            }
+
+            a:hover {
+                color: white;
+            }
+
+            .arrow-right {
+                display: none;
+            }
+
+            &.active {
+                background-color: $menu-item-color-active;
+
+                a {
+                    color: white;
+                    background-color: $menu-item-color-active;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

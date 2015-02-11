@@ -9,6 +9,9 @@
         vm.init = function () {
 
         };
+        bookService.getBooks({}, function(books) {
+            console.log("Books: ", books);
+        });
     };
 
     angular.module('app').controller('Reader', Reader);
