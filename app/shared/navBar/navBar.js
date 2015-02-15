@@ -6,9 +6,6 @@
             link: link,
             templateUrl: 'shared/navBar/navBar_tmpl.html',
             restrict: 'EA',
-            scope: {
-                title: '='
-            },
             controller: NavbarController,
             controllerAs: 'vm',
             bindToController: true
@@ -20,8 +17,11 @@
         }
     }
 
-    function NavbarController() {
+    function NavbarController($scope) {
         var vm = this;
+        vm.bookMenuClicked = function () {
+            $scope.$emit('book-menu.toggle');
+        };
     }
     angular.module('app').directive('lqNavbar', navbar);
 })();

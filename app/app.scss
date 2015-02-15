@@ -1,5 +1,46 @@
+@import 'variables.scss';
+
 // bower:scss
+@import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 // endbower
-body {
-    color: blue;
+
+.main-view {
+    position: absolute;
+    background-color: #cacaca;
+    top: $navbar-portrait-height;
+    left: 0;
+    right:0;
+    bottom: 0;
+}
+
+.left-menu-open {
+    .main-view, .navbar {
+        left: $left-menu-width;
+    }
+}
+
+.left-menu {
+    position: fixed;
+    left: -$left-menu-width;
+    top: 0;
+    bottom: 0;
+    width: $left-menu-width;
+    &.open {
+        left: 0;
+    }
+}
+
+.bottom-menu-open {
+ //If anything needs to move on bottom menu opening
+}
+
+.bottom-menu {
+    position: absolute;
+    height: $bottom-menu-height;
+    left: 0;
+    right: 0;
+    bottom: -$bottom-menu-height;
+    &.open {
+        bottom: 0;
+    }
 }

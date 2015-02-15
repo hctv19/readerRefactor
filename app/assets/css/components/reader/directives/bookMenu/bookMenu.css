@@ -1,34 +1,3 @@
-.book-menu ul {
-  padding-left: 0;
-  background-color: #353535;
-}
-.book-menu ul li {
-  cursor: pointer;
-  background-color: transparent;
-  height: 40px;
-}
-.book-menu ul li a {
-  font-size: 22px;
-  line-height: 40px;
-  padding-left: 10px;
-  display: block;
-  box-sizing: content-box;
-  text-decoration: none;
-  text-align: left;
-  color: #c2c2c2;
-  height: 40px;
-}
-.book-menu ul li a:hover {
-  color: white;
-}
-.book-menu ul li .arrow-right {
-  display: none;
-}
-.book-menu ul li.active {
-  background-color: #558cb9;
-}
-.book-menu ul li.active a {
-  color: white;
-  background-color: #558cb9;
-  font-weight: bold;
+.book-menu {
+  background-color: green;
 }

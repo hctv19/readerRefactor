@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,UAAW;EACP,gBAAgB,EAAE,IAAI",
+"sources": ["../../../../../components/reader/directives/bookContent/bookContent.scss"],
+"names": [],
+"file": "bookContent.css"
+}

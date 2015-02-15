@@ -6,9 +6,6 @@
             link: link,
             templateUrl: 'components/reader/directives/bookMenu/bookMenu_tmpl.html',
             restrict: 'EA',
-            scope: {
-                title: '='
-            },
             controller: BookMenuController,
             controllerAs: 'vm',
             bindToController: true
@@ -20,7 +17,7 @@
         }
     }
 
-    function BookMenuController() {
+    function BookMenuController($scope) {
         var vm = this;
     }
     angular.module('app').directive('lqBookMenu', bookMenu);

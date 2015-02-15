@@ -1,10 +1,11 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="">
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>ReactReader</title>
+    <base href="/">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -13,20 +14,24 @@
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="assets/css/app.css">
+    <link href="assets/css/shared/navBar/navBar.css" rel="stylesheet" />
+    <link href="assets/css/components/reader/directives/bookContent/bookContent.css" rel="stylesheet" />
+    <link href="assets/css/components/reader/directives/bookMenu/bookMenu.css" rel="stylesheet" />
+    <link href="assets/css/components/reader/directives/contextualGlossary/contextualGlossary.css" rel="stylesheet" />
+    <link href="assets/css/components/reader/directives/glossary/glossary.css" rel="stylesheet" />
+    
     <!-- endbuild -->
 
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="Main as main" ng-class="{'left-menu-open': main.state.leftMenuOpen}">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    
 
-    <div id="reader" ng-controller="Reader as reader">
-        <nav lq-book-menu class="book-menu"></nav>
-        <nav lq-navbar title="reader.book.title"></nav>
-        <div lq-book-content></div>
-        <div lq-contextual-glossary></div>
-    </div>
+    <nav lq-navbar title="main.settings.title" class="navbar"></nav>
+    <div class="main-view" ng-view></div>
+    
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -34,7 +39,9 @@
     <script src="../bower_components/react/react.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -47,9 +54,13 @@
     <script src="shared/services/bookService.js"></script>
 
     <script src="shared/navBar/navBar.js"></script>
-
+    <script src="components/mainController.js"></script>
     <script src="components/reader/readerController.js"></script>
     <script src="components/reader/directives/bookMenu/bookMenu.js"></script>
+    <script src="components/reader/directives/bookContent/bookContent.js"></script>
+    <script src="components/reader/directives/contextualGlossary/contextualGlossary.js"></script>
+    <script src="components/reader/directives/glossary/glossary.js"></script>
+    
 
     <!-- endbuild -->
 </body>

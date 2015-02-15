@@ -19,7 +19,9 @@
 
     angular
         .module('app', [
-            'ngResource'
+            'ngResource',
+            'ngRoute',
+            'ngSanitize'
         ])
         .constant('config', config)
         .run(['$rootScope', function($rootScope) {

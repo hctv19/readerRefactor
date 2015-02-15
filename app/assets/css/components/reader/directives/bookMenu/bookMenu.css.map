@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAGI,aAAG;EACC,YAAY,EAAE,CAAC;EACf,gBAAgB,ECCN,OAAa;;ADCvB,gBAAG;EACC,MAAM,EAAE,OAAO;EACf,gBAAgB,EAAE,WAAW;EAC7B,MAAM,ECCM,IAAI;;ADChB,kBAAE;EACE,SAAS,EAAE,IAAI;EACf,WAAW,ECHH,IAAI;EDIZ,YAAY,ECHJ,IAAI;EDIZ,OAAO,EAAE,KAAK;EACd,eAAe,EAAE,WAAW;EAC5B,kBAAkB,EAAE,WAAW;EAC/B,UAAU,EAAE,WAAW;EACvB,eAAe,EAAE,IAAI;EACrB,UAAU,EAAE,IAAI;EAChB,KAAK,ECfE,OAAgB;EDgBvB,MAAM,ECZE,IAAI;;ADehB,wBAAQ;EACJ,KAAK,EAAE,KAAK;;AAGhB,6BAAa;EACT,OAAO,EAAE,IAAI;;AAGjB,uBAAS;EACL,gBAAgB,EC1BP,OAAe;;AD4BxB,yBAAE;EACE,KAAK,EAAE,KAAK;EACZ,gBAAgB,EC9BX,OAAe;ED+BpB,WAAW,EAAE,IAAI",
-"sources": ["../../../../../components/reader/directives/bookMenu/bookMenu.scss","../../../../../variables.scss"],
+"mappings": "AAEA,UAAW;EACP,gBAAgB,EAAE,KAAK",
+"sources": ["../../../../../components/reader/directives/bookMenu/bookMenu.scss"],
 "names": [],
 "file": "bookMenu.css"
 }

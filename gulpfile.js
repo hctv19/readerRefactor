@@ -3,6 +3,7 @@
 // generated on 2015-01-29 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var TEMP = '.tmp';
+var ASSETS = 'app/assets';
 var $ = require('gulp-load-plugins')();
 
 /**
@@ -68,8 +69,6 @@ gulp.task('html', ['styles', 'templatecache', 'concat'], function () {
     .pipe(gulp.dest('dist'));
 });
 
-
-
 gulp.task('images', function () {
   return gulp.src('assets/images/**/*')
     .pipe($.cache($.imagemin({
@@ -80,9 +79,9 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-  return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
+    return gulp.src(require('main-bower-files')(), { base: 'bower_components/bootstrap-sass/assets/fonts' })
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-    .pipe($.flatten())
+    .pipe(gulp.dest('app/assets/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
 
@@ -127,7 +126,7 @@ gulp.task('wiredep', function () {
 
   gulp.src('app/**/*.scss')
     .pipe(wiredep())
-    .pipe(gulp.dest('assets/css'));
+    .pipe(gulp.dest('app'));
 
   gulp.src('app/*.html')
     .pipe(wiredep())
@@ -143,7 +142,8 @@ gulp.task('watch', ['connect'], function () {
     TEMP+'/**/*.css',
     'app/**/*.js',
     TEMP+'/**/*.js',
-    'assets/images/**/*'
+    ASSETS + '/images/**/*',
+    ASSETS + '/css/**/*'
   ]).on('change', $.livereload.changed);
 
   gulp.watch('app/**/*.scss', ['styles']);

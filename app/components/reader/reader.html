@@ -1,1 +1,3 @@
-﻿
+﻿<nav lq-book-menu class="book-menu left-menu" ng-class="{'open': reader.vm.state.bookMenuOpen}"></nav>
+<article class="book-content" ng-bind-html="reader.vm.bookContent"></article>
+<article lq-contextual-glossary class="contextual-glossary bottom-menu" ng-class="{'open': reader.vm.state.contextualGlossaryOpen}"></article>
