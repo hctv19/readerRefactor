@@ -1,4 +1,6 @@
-﻿<div class="reader-view" ng-class="{'left-menu-open': reader.vm.state.leftMenuOpen}">
+﻿<div class="reader-view" 
+     ng-class="{'left-menu-open': reader.vm.state.leftMenuOpen}"
+     ng-controller="Reader as reader">
     <nav class="navbar">
         <div class="left-buttons">
             <button class="book-menu-button" ng-click="reader.vm.bookMenuClicked();"><i class="fa fa-bars"></i></button>

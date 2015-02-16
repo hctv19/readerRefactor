@@ -13,7 +13,7 @@
     angular
         .module('app', [
             'ngResource',
-            'ngRoute'
+            'ui.router'
         ])
         .run(['$rootScope', function($rootScope) {
                 $rootScope.styles = [];

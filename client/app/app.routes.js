@@ -1,21 +1,13 @@
 ﻿(function () {
     'use strict';
     angular.module('app')
-    .config(function ($routeProvider, $locationProvider) {
-        $routeProvider
-        .when('/reader', {
-            templateUrl: 'app/reader/reader.html',
-            controller: 'Reader',
-            controllerAs: 'reader'
-        })
-        .when('/reader/:bookId', {
-            templateUrl: 'app/reader/reader.html',
-            controller: 'Reader',
-            controllerAs: 'reader'
-        })
-        .otherwise({ redirectTo: '/reader' });
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/reader');
 
-        // configure html5 to get links working on jsfiddle
-        $locationProvider.html5Mode(false);
+        $stateProvider
+            .state('reader', {
+                url: '/reader/:bookId',
+                templateUrl: 'app/reader/reader.html',
+            });
     });
 })();
