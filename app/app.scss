@@ -6,6 +6,7 @@
 
 .main-view {
     position: absolute;
+    overflow: hidden;
     background-color: #cacaca;
     top: $navbar-portrait-height;
     left: 0;

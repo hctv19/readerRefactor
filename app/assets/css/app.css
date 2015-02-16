@@ -7046,6 +7046,7 @@ button.close {
 }
 .main-view {
   position: absolute;
+  overflow: hidden;
   background-color: #cacaca;
   top: 48px;
   left: 0;

@@ -6,8 +6,6 @@
             link: link,
             templateUrl: 'components/reader/directives/bookContent/bookContent_tmpl.html',
             restrict: 'EA',
-            controller: BookContentController,
-            controllerAs: 'vm',
             scope: {
                 content: '='
             },
@@ -16,17 +14,24 @@
         return directive;
 
         function link(scope, element, attrs) {
-            scope.$watch('content', function () {
-                console.log("Content has been set", scope.content);
-            });
-
+            scope.$watch('content.html', function (newValue, oldValue) {
+                if (newValue) {
+                    $('#lqBookContentHtml mark').off('click');
+                    $('#lqBookContentHtml').html(newValue);
+                    $('#lqBookContentHtml mark').on('click', { scope: scope }, lookupTerm);
+                }
+            }, true);
         }
-    }
 
-    function BookContentController() {
-        var vm = this;
-        console.log("BookContentController VM: ", vm);
+        function lookupTerm(e) {
+            var scope = e.data.scope,
+                $element = $(e.target),
+                term = $element.attr('data-term'),
+                context = $element.attr('data-context');
 
+            scope.$emit('contextual-glossary.toggle', {term: term, context: context});
+            scope.$apply();
+        }
     }
     angular.module('app').directive('lqBookContent', bookContent);
 })();

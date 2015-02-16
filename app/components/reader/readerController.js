@@ -1,17 +1,18 @@
 ﻿(function () {
     'use strict';
 
-    var Reader = function (config, bookService, $scope, $sce) {
+    var Reader = function (config, bookService, $scope) {
         var vm = this;
-        vm.book = { name: 'The Derpiest Dog' };
-        vm.bookContent = {};
+        vm.book = { name: 'The Derpiest Dog'};
+        $scope.bookContent = {html: ''}; //Binding to this when it's vm.bookContent doesn't update. Why?
         vm.state = { bookMenuOpen: false, contextualGlossaryOpen: false };
 
-        $scope.$on('book-menu.toggle', function() {
+        $scope.$on('book-menu.toggle', function () {
             vm.state.bookMenuOpen = !vm.state.bookMenuOpen;
         });
 
         $scope.$on('contextual-glossary.toggle', function () {
+            alert("Gloss time");
             vm.state.contextualGlossaryOpen = !vm.state.contextualGlossaryOpen;
         });
 
@@ -28,9 +29,7 @@
 
         function getBookContent(bookId, sectionIndex) {
             bookService.getSectionContent(bookId, sectionIndex, function (content) {
-                var trustedHtml = $sce.trustAsHtml(content.html);
-                console.log("Trusted HTML: ", trustedHtml);
-                vm.bookContent = trustedHtml;
+                $scope.bookContent.html = content.html;
             });
         }
     };
