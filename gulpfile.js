@@ -3,7 +3,8 @@
 // generated on 2015-01-29 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var TEMP = '.tmp';
-var ASSETS = 'app/assets';
+var ASSETS = 'client/assets';
+var APP = 'client/app';
 var $ = require('gulp-load-plugins')();
 
 /**
@@ -14,14 +15,14 @@ gulp.task('templatecache', function () {
     log('Creating an AngularJS $templateCache');
 
     return gulp
-        .src('app/**/*_tmpl.html')
+        .src(APP+'/**/*.html')
         .pipe($.minifyHtml({ empty: true }))
         .pipe($.angularTemplatecache())
         .pipe(gulp.dest(TEMP));
 });
 
 gulp.task('concat', function () {
-    gulp.src('app/**/*.js')
+    gulp.src(APP+'/**/*.js')
         .pipe($.sourcemaps.init())
         .pipe($.concat('script.js'))
         .pipe($.sourcemaps.write())
@@ -39,18 +40,18 @@ gulp.task('usemin', function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src('app/**/*.scss')
+  return gulp.src(ASSETS+'/**/*.scss')
     .pipe($.plumber())
     .pipe($.rubySass({
       style: 'expanded',
       precision: 10
     }))
     .pipe($.autoprefixer({browsers: ['last 1 version']}))
-    .pipe(gulp.dest('app/assets/css'));
+    .pipe(gulp.dest(ASSETS + '/compiled'));
 });
 
 gulp.task('jshint', function () {
-  return gulp.src('app/**/*.js')
+  return gulp.src(APP+'/**/*.js')
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.jshint.reporter('fail'));
@@ -59,7 +60,7 @@ gulp.task('jshint', function () {
 gulp.task('html', ['styles', 'templatecache', 'concat'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-  return gulp.src('app/*.html')
+  return gulp.src('client/*.html')
     .pipe(assets)
     .pipe($.if(TEMP+'/*.js', $.uglify()))
     .pipe($.if(TEMP+'/*.css', $.csso()))
@@ -70,7 +71,7 @@ gulp.task('html', ['styles', 'templatecache', 'concat'], function () {
 });
 
 gulp.task('images', function () {
-  return gulp.src('assets/images/**/*')
+  return gulp.src(ASSETS+'/images/**/*')
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -81,13 +82,13 @@ gulp.task('images', function () {
 gulp.task('fonts', function () {
     return gulp.src(require('main-bower-files')(), { base: 'bower_components/bootstrap-sass/assets/fonts' })
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-    .pipe(gulp.dest('app/assets/fonts'))
+    .pipe(gulp.dest(ASSETS+'/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('extras', function () {
   return gulp.src([
-    'app/*.*',
+    APP+'/*.*',
     '!app/*.html',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
@@ -102,12 +103,12 @@ gulp.task('connect', ['styles', 'fonts'], function () {
   var serveIndex = require('serve-index');
   var app = require('connect')()
     .use(require('connect-livereload')({port: 35729}))
-    .use(serveStatic('.tmp'))
-    .use(serveStatic('app'))
+    .use(serveStatic(TEMP))
+    .use(serveStatic('client'))
     // paths to bower_components should be relative to the current file
     // e.g. in app/index.html you should use ../bower_components
     .use('/bower_components', serveStatic('bower_components'))
-    .use(serveIndex('app'));
+    .use(serveIndex('client'));
 
   require('http').createServer(app)
     .listen(9000)
@@ -124,13 +125,13 @@ gulp.task('serve', ['connect', 'watch'], function () {
 gulp.task('wiredep', function () {
   var wiredep = require('wiredep').stream;
 
-  gulp.src('app/**/*.scss')
+  gulp.src(ASSETS+'/**/*.scss')
     .pipe(wiredep())
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest(ASSETS));
 
-  gulp.src('app/*.html')
+  gulp.src('client/*.html')
     .pipe(wiredep())
-    .pipe(gulp.dest('app/'));
+    .pipe(gulp.dest('client'));
 });
 
 gulp.task('watch', ['connect'], function () {
@@ -138,15 +139,15 @@ gulp.task('watch', ['connect'], function () {
 
   // watch for changes
   gulp.watch([
-    'app/*.html',
+    'client/**/*.html',
     TEMP+'/**/*.css',
-    'app/**/*.js',
+    APP+'/**/*.js',
     TEMP+'/**/*.js',
     ASSETS + '/images/**/*',
     ASSETS + '/css/**/*'
   ]).on('change', $.livereload.changed);
 
-  gulp.watch('app/**/*.scss', ['styles']);
+  gulp.watch(ASSETS+'/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
 

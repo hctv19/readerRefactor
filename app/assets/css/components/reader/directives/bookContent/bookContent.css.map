@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,aAAc;EACV,UAAU,EAAE,MAAM;EAClB,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAC,CAAC;EACL,KAAK,EAAC,CAAC;EACP,MAAM,EAAE,CAAC;EACT,IAAI,EAAE,CAAC",
-"sources": ["../../../../../components/reader/directives/bookContent/bookContent.scss"],
-"names": [],
-"file": "bookContent.css"
-}

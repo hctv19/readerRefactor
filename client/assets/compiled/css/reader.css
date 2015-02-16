@@ -1,0 +1,66 @@
+.reader-view {
+  position: absolute;
+  overflow: hidden;
+  background-color: #cacaca;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.reader-view .navbar {
+  background-color: gray;
+  position: fixed;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+}
+.reader-view .navbar .left-buttons, .reader-view .navbar .right-buttons {
+  height: 100%;
+  -webkit-flex-grow: 0;
+          flex-grow: 0;
+  padding: 0;
+  border: none;
+}
+.reader-view .navbar .title {
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
+  text-align: center;
+  line-height: 48px;
+}
+.reader-view .navbar .book-menu-button {
+  height: 100%;
+  width: 48px;
+  padding: 0;
+  border: none;
+  background-color: white;
+}
+.reader-view .left-menu-open .main-view, .reader-view .left-menu-open .navbar {
+  left: 300px;
+}
+.reader-view .left-menu {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+}
+.reader-view .left-menu.open {
+  left: 0;
+}
+.reader-view .bottom-menu {
+  position: absolute;
+  height: 200px;
+  left: 0;
+  right: 0;
+  bottom: -200px;
+}
+.reader-view .bottom-menu.open {
+  bottom: 0;
+}

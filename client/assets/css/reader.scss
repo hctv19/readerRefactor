@@ -1,0 +1,78 @@
+@import 'variables.scss';
+
+.reader-view {
+    position: absolute;
+    overflow: hidden;
+    background-color: #cacaca;
+    top: $navbar-portrait-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .navbar {
+        background-color: gray;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: $navbar-portrait-height;
+
+        .left-buttons, .right-buttons {
+            height: 100%;
+            flex-grow: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .title {
+            flex-grow: 1;
+            text-align: center;
+            line-height: $navbar-portrait-height;
+        }
+
+        .book-menu-button {
+            height: 100%;
+            width: 48px;
+            padding: 0;
+            border: none;
+            background-color: white;
+        }
+    }
+
+    .left-menu-open {
+        .main-view, .navbar {
+            left: $left-menu-width;
+        }
+    }
+
+    .left-menu {
+        position: fixed;
+        left: -$left-menu-width;
+        top: 0;
+        bottom: 0;
+        width: $left-menu-width;
+
+        &.open {
+            left: 0;
+        }
+    }
+
+    .bottom-menu-open {
+        //If anything needs to move on bottom menu opening
+    }
+
+    .bottom-menu {
+        position: absolute;
+        height: $bottom-menu-height;
+        left: 0;
+        right: 0;
+        bottom: -$bottom-menu-height;
+
+        &.open {
+            bottom: 0;
+        }
+    }
+}
