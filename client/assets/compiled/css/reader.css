@@ -7,6 +7,12 @@
   right: 0;
   bottom: 0;
 }
+.reader-view.left-menu-open {
+  left: 300px;
+}
+.reader-view.left-menu-open .navbar {
+  left: 300px;
+}
 .reader-view .navbar {
   background-color: gray;
   position: fixed;
@@ -40,9 +46,6 @@
   padding: 0;
   border: none;
   background-color: white;
-}
-.reader-view .left-menu-open .main-view, .reader-view .left-menu-open .navbar {
-  left: 300px;
 }
 .reader-view .left-menu {
   position: fixed;

@@ -3,18 +3,17 @@
 
     var Reader = function (config, bookService, $scope) {
         var vm = this;
+
         vm.book = { name: 'The Derpiest Dog' };
-        vm.state = { bookMenuOpen: false, contextualGlossaryOpen: false };
+        vm.bookMenuOpen = false;
+        vm.contextualGlossaryOpen = false; 
+        vm.bookMenuClicked = bookMenuClicked;
 
-        $scope.bookContent = {html: ''}; //Binding to this when it's vm.bookContent doesn't update. Why?
+        $scope.bookContent = { html: '' }; //Binding to this when it's vm.bookContent doesn't update. Why?
 
-        vm.bookMenuClicked = function () {
-            alert("test");
-            vm.state.bookMenuOpen = !vm.state.bookMenuOpen;
-        };
 
         vm.glossaryTermClicked = function() {
-            vm.state.contextualGlossaryOpen = !vm.state.contextualGlossaryOpen;
+            vm.contextualGlossaryOpen = !vm.contextualGlossaryOpen;
         };
 
         bookService.getBooks({}, function(books) {
@@ -24,9 +23,9 @@
             });
         });
 
-        $scope.$watch('vm.state', function (current, original) {
-            $scope.$apply();
-        });
+        function bookMenuClicked() {
+            vm.bookMenuOpen = !vm.bookMenuOpen;
+        }
 
         function getBook(bookId, callback) {
             bookService.getBook(bookId, callback);

@@ -1,15 +1,15 @@
-﻿<div class="reader-view" 
-     ng-class="{'left-menu-open': reader.vm.state.leftMenuOpen}"
+﻿<div class="reader-view"
+     ng-class="{'left-menu-open': reader.bookMenuOpen}"
      ng-controller="Reader as reader">
     <nav class="navbar">
         <div class="left-buttons">
-            <button class="book-menu-button" ng-click="reader.vm.bookMenuClicked();"><i class="fa fa-bars"></i></button>
+            <button class="book-menu-button" ng-click="reader.bookMenuClicked();"><i class="fa fa-bars"></i></button>
         </div>
-        <div class="title">Test {{vm.settings.title}}</div>
+        <div class="title">Test {{reader.book.name}}</div>
         <div class="right-buttons"></div>
     </nav>
 
-    <nav class="book-menu left-menu" ng-class="{'open': reader.vm.state.bookMenuOpen}">
+    <nav class="book-menu left-menu" ng-class="{'open': reader.bookMenuOpen}">
         <h1>Table of Contents</h1>
 
         <ul>
@@ -31,9 +31,9 @@
         </ul>
     </nav>
 
-    <article lq-book-content class="book-content" ng-class="{'bottom-menu-open': reader.vm.state.contextualGlossaryOpen}" content="bookContent"></article>
+    <article lq-book-content class="book-content" ng-class="{'bottom-menu-open': reader.contextualGlossaryOpen}" content="bookContent"></article>
 
-    <article lq-contextual-glossary class="contextual-glossary bottom-menu" ng-class="{'open': reader.vm.state.contextualGlossaryOpen}">
+    <article lq-contextual-glossary class="contextual-glossary bottom-menu" ng-class="{'open': reader.contextualGlossaryOpen}">
         <h1>Glossary</h1>
         <h2>{{reader.vm.glossedItem.term}}</h2>
         <p>{{reader.vm.glossedItem.definition}}</p>
