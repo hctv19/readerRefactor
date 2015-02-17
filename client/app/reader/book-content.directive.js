@@ -7,7 +7,8 @@
             template: '<section id="lqBookContentHtml"></section>',
             restrict: 'EA',
             scope: {
-                content: '='
+                content: '=',
+                termClicked: '&termClicked'
             },
             bindToController: true
         };
@@ -28,10 +29,9 @@
                 $element = $(e.target),
                 term = $element.attr('data-term'),
                 context = $element.attr('data-context');
-
-            scope.$emit('contextual-glossary.toggle', {term: term, context: context});
-            scope.$apply();
+            scope.termClicked({ term: term, context: context });
         }
     }
+
     angular.module('app').directive('lqBookContent', bookContent);
 })();

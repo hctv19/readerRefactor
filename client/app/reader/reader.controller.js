@@ -5,18 +5,15 @@
         var vm = this;
 
         vm.book = { name: 'The Derpiest Dog' };
-        vm.bookMenuOpen = false;
-        vm.contextualGlossaryOpen = false; 
+        vm.state = { bookMenuOpen: false, contextualGlossaryOpen: false };
         vm.bookMenuClicked = bookMenuClicked;
+        vm.glossaryTermClicked = glossaryTermClicked;
 
         $scope.bookContent = { html: '' }; //Binding to this when it's vm.bookContent doesn't update. Why?
 
 
-        vm.glossaryTermClicked = function() {
-            vm.contextualGlossaryOpen = !vm.contextualGlossaryOpen;
-        };
 
-        bookService.getBooks({}, function(books) {
+        bookService.getBooks({}, function (books) {
             getBook(books[0].id, function (book) {
                 vm.book = book;
                 getBookContent(vm.book.id, vm.book.sections[0].index);
@@ -24,7 +21,12 @@
         });
 
         function bookMenuClicked() {
-            vm.bookMenuOpen = !vm.bookMenuOpen;
+            vm.state.bookMenuOpen = !vm.state.bookMenuOpen;
+        }
+
+        function glossaryTermClicked(term, context) {
+            console.log("Term Clicked: " + term + " " + context);
+            vm.state.contextualGlossaryOpen = !vm.state.contextualGlossaryOpen;
         }
 
         function getBook(bookId, callback) {
