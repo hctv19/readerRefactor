@@ -2,8 +2,8 @@
 
 .reader-view {
     position: absolute;
+    background-color: $book-content-background;
     overflow: hidden;
-    background-color: #cacaca;
     top: $navbar-portrait-height;
     left: 0;
     right: 0;
@@ -11,9 +11,11 @@
 
     &.left-menu-open {
         left: $left-menu-width;
+        right: -$left-menu-width;
 
         .navbar {
             left: $left-menu-width;
+            right: -$left-menu-width;
         }
     }
 
@@ -50,6 +52,9 @@
         }
     }
 
+    .book-content {
+        padding: 0 $reader-margin;
+    }
 
     .left-menu {
         position: fixed;
@@ -68,6 +73,7 @@
     }
 
     .bottom-menu {
+        font-family: $font-stack;
         position: absolute;
         height: $bottom-menu-height;
         left: 0;
@@ -77,5 +83,35 @@
         &.open {
             bottom: 0;
         }
+
+        .top {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 50px;
+          
+
+            .title {
+                position: absolute;
+                left: $reader-margin;
+                right: -$reader-margin;
+                border-bottom: 1px solid gray;
+            }
+
+            .closeButton {
+                position: absolute;
+                right: 0;
+                height: 50px;
+                width: 50px;
+
+                .close-icon {
+                    font-size: 50px;
+                }
+            }
+        }
+    }
+
+    .contextual-glossary {
+        background-color: rgba(255,255,255, .9);
     }
 }

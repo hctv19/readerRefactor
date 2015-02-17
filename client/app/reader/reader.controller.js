@@ -8,6 +8,7 @@
         vm.state = { bookMenuOpen: false, contextualGlossaryOpen: false };
         vm.bookMenuClicked = bookMenuClicked;
         vm.glossaryTermClicked = glossaryTermClicked;
+        vm.closeContextualGlossary = closeContextualGlossary;
 
         $scope.bookContent = { html: '' }; //Binding to this when it's vm.bookContent doesn't update. Why?
 
@@ -37,6 +38,10 @@
             bookService.getSectionContent(bookId, sectionIndex, function (content) {
                 $scope.bookContent.html = content.html;
             });
+        }
+
+        function closeContextualGlossary() {
+            vm.state.contextualGlossaryOpen = false;
         }
     };
 

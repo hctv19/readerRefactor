@@ -30,6 +30,7 @@
                 term = $element.attr('data-term'),
                 context = $element.attr('data-context');
             scope.termClicked({ term: term, context: context });
+            scope.$apply();
         }
     }
 

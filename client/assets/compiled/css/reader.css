@@ -1,7 +1,7 @@
 .reader-view {
   position: absolute;
+  background-color: #f5f2e9;
   overflow: hidden;
-  background-color: #cacaca;
   top: 48px;
   left: 0;
   right: 0;
@@ -9,9 +9,11 @@
 }
 .reader-view.left-menu-open {
   left: 300px;
+  right: -300px;
 }
 .reader-view.left-menu-open .navbar {
   left: 300px;
+  right: -300px;
 }
 .reader-view .navbar {
   background-color: gray;
@@ -47,6 +49,9 @@
   border: none;
   background-color: white;
 }
+.reader-view .book-content {
+  padding: 0 20px;
+}
 .reader-view .left-menu {
   position: fixed;
   left: -300px;
@@ -58,6 +63,7 @@
   left: 0;
 }
 .reader-view .bottom-menu {
+  font-family: Helvetica, sans-serif;
   position: absolute;
   height: 200px;
   left: 0;
@@ -66,4 +72,28 @@
 }
 .reader-view .bottom-menu.open {
   bottom: 0;
+}
+.reader-view .bottom-menu .top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+.reader-view .bottom-menu .top .title {
+  position: absolute;
+  left: 20px;
+  right: -20px;
+  border-bottom: 1px solid gray;
+}
+.reader-view .bottom-menu .top .closeButton {
+  position: absolute;
+  right: 0;
+  height: 50px;
+  width: 50px;
+}
+.reader-view .bottom-menu .top .closeButton .close-icon {
+  font-size: 50px;
+}
+.reader-view .contextual-glossary {
+  background-color: rgba(255, 255, 255, 0.9);
 }

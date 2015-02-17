@@ -36,7 +36,11 @@
              term-clicked="reader.glossaryTermClicked(term, context)"></article>
 
     <article lq-contextual-glossary class="contextual-glossary bottom-menu" ng-class="{'open': reader.state.contextualGlossaryOpen}">
-        <h1>Glossary</h1>
+        <div class="top">
+            <h1 class="title">Glossary</h1>
+            <button class="closeButton" ng-click="reader.closeContextualGlossary();"><i class="fa fa-close close-icon"></i></button>
+        </div>
+        
         <h2>{{reader.vm.glossedItem.term}}</h2>
         <p>{{reader.vm.glossedItem.definition}}</p>
     </article>
