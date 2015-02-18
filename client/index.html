@@ -16,18 +16,17 @@
     <link href="assets/compiled/css/reader.css" rel="stylesheet" />
     <link href="assets/compiled/css/topnav.css" rel="stylesheet" />
     <!-- build:css styles/main.css -->
-    
     <!-- endbuild -->
 
 </head>
-<body ng-app="app" ng-controller="Main as main" >
+<body ng-app="app" ng-controller="Main as main">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
+
 
     <div class="main-view" ui-view></div>
-    
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -38,18 +37,18 @@
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
     <!-- build:js scripts/main.js -->
     <script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
     <script src="app/app.routes.js"></script>
 
     <script src="app/shared/services/book.service.js"></script>
+    <script src="app/shared/services/discussion.service.js"></script>
 
     <script src="app/layout/main.controller.js"></script>
     <script src="app/reader/reader.controller.js"></script>
     <script src="app/reader/book-content.directive.js"></script>
-    
+
     <!-- endbuild -->
 </body>
 </html>

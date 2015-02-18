@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var Reader = function (config, bookService, $scope) {
+    var Reader = function (config, bookService, discussionService, $scope) {
         var vm = this;
 
         vm.book = { name: 'The Derpiest Dog' };
