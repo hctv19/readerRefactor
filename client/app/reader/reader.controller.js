@@ -5,10 +5,17 @@
         var vm = this;
 
         vm.book = { name: 'The Derpiest Dog' };
-        vm.state = { bookMenuOpen: false, contextualGlossaryOpen: false };
+        vm.state = {
+            bookMenuOpen: false,
+            contextualGlossaryOpen: false,
+            discussOpen: false
+        };
+        vm.discussionParagraphId = null;
         vm.bookMenuClicked = bookMenuClicked;
         vm.glossaryTermClicked = glossaryTermClicked;
         vm.closeContextualGlossary = closeContextualGlossary;
+        vm.closeDiscussions = closeDiscussions;
+        vm.discussClicked = discussClicked;
 
         $scope.bookContent = { html: '' }; //Binding to this when it's vm.bookContent doesn't update. Why?
 
@@ -30,6 +37,15 @@
             vm.state.contextualGlossaryOpen = !vm.state.contextualGlossaryOpen;
         }
 
+        function discussClicked(paragraphId) {
+            if (paragraphId !== vm.discussionParagraphId) {
+                vm.discussionParagraphId = paragraphId;
+                vm.state.discussOpen = true;
+            } else {
+                vm.state.discussOpen = !vm.state.discussOpen;
+            }
+        }
+
         function getBook(bookId, callback) {
             bookService.getBook(bookId, callback);
         }
@@ -42,6 +58,10 @@
 
         function closeContextualGlossary() {
             vm.state.contextualGlossaryOpen = false;
+        }
+
+        function closeDiscussions() {
+            vm.state.discussOpen = false;
         }
     };
 

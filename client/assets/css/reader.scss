@@ -54,6 +54,27 @@
 
     .book-content {
         padding: 0 $reader-margin;
+        p {
+            position: relative;
+            margin: 1em 0;
+        }
+        .discuss {
+            position: absolute;
+            right: -(0.5 * $reader-margin);
+            top: -1em;
+            bottom: -1em;
+            &::after {
+                font-family: FontAwesome;
+                content: "\f040";
+                text-align: right;
+            }
+            
+            width: 40px;
+            height: 40px;
+            &:hover {
+                background-color: blue;
+            }
+        }
     }
 
     .left-menu {
@@ -94,7 +115,7 @@
             .title {
                 position: absolute;
                 left: $reader-margin;
-                right: -$reader-margin;
+                right: $reader-margin;
                 border-bottom: 1px solid gray;
             }
 
@@ -111,7 +132,8 @@
         }
     }
 
-    .contextual-glossary {
+    .contextual-glossary, .discussions {
         background-color: rgba(255,255,255, .9);
     }
+
 }

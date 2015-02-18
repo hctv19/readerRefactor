@@ -8,7 +8,8 @@
             restrict: 'EA',
             scope: {
                 content: '=',
-                termClicked: '&termClicked'
+                termClicked: '&termClicked',
+                discussClicked: '&discussClicked'
             },
             bindToController: true
         };
@@ -19,6 +20,8 @@
                 if (newValue) {
                     $('#lqBookContentHtml mark').off('click');
                     $('#lqBookContentHtml').html(newValue);
+                    $('#lqBookContentHtml p').each(injectDiscussionButton);
+                    $('#lqBookContentHtml .discuss').on('click', { scope: scope }, openDiscussions);
                     $('#lqBookContentHtml mark').on('click', { scope: scope }, lookupTerm);
                 }
             }, true);
@@ -30,6 +33,16 @@
                 term = $element.attr('data-term'),
                 context = $element.attr('data-context');
             scope.termClicked({ term: term, context: context });
+            scope.$apply();
+        }
+
+        function injectDiscussionButton() {
+            $(this).append("<button class='discuss'></button>");
+        }
+
+        function openDiscussions(e) {
+            var scope = e.data.scope;
+            scope.discussClicked({ paragraphId: 0 });
             scope.$apply();
         }
     }

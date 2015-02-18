@@ -50,7 +50,27 @@
   background-color: white;
 }
 .reader-view .book-content {
-  padding: 0 20px;
+  padding: 0 40px;
+}
+.reader-view .book-content p {
+  position: relative;
+  margin: 1em 0;
+}
+.reader-view .book-content .discuss {
+  position: absolute;
+  right: -20px;
+  top: -1em;
+  bottom: -1em;
+  width: 40px;
+  height: 40px;
+}
+.reader-view .book-content .discuss::after {
+  font-family: FontAwesome;
+  content: "\f040";
+  text-align: right;
+}
+.reader-view .book-content .discuss:hover {
+  background-color: blue;
 }
 .reader-view .left-menu {
   position: fixed;
@@ -81,8 +101,8 @@
 }
 .reader-view .bottom-menu .top .title {
   position: absolute;
-  left: 20px;
-  right: -20px;
+  left: 40px;
+  right: 40px;
   border-bottom: 1px solid gray;
 }
 .reader-view .bottom-menu .top .closeButton {
@@ -94,6 +114,6 @@
 .reader-view .bottom-menu .top .closeButton .close-icon {
   font-size: 50px;
 }
-.reader-view .contextual-glossary {
+.reader-view .contextual-glossary, .reader-view .discussions {
   background-color: rgba(255, 255, 255, 0.9);
 }

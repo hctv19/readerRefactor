@@ -31,16 +31,27 @@
         </ul>
     </nav>
 
-    <article lq-book-content class="book-content" ng-class="{'bottom-menu-open': reader.state.contextualGlossaryOpen}"
+    <article lq-book-content class="book-content" ng-class="{'bottom-menu-open': reader.state.contextualGlossaryOpen || reader.state.discussOpen}"
              content="bookContent"
-             term-clicked="reader.glossaryTermClicked(term, context)"></article>
+             term-clicked="reader.glossaryTermClicked(term, context)"
+             discuss-clicked="reader.discussClicked(paragraphId);"></article>
 
-    <article lq-contextual-glossary class="contextual-glossary bottom-menu" ng-class="{'open': reader.state.contextualGlossaryOpen}">
+    <article class="contextual-glossary bottom-menu" ng-class="{'open': reader.state.contextualGlossaryOpen}">
         <div class="top">
             <h1 class="title">Glossary</h1>
             <button class="closeButton" ng-click="reader.closeContextualGlossary();"><i class="fa fa-close close-icon"></i></button>
         </div>
-        
+
+        <h2>{{reader.vm.glossedItem.term}}</h2>
+        <p>{{reader.vm.glossedItem.definition}}</p>
+    </article>
+
+    <article class="discussions bottom-menu" ng-class="{'open': reader.state.discussOpen}">
+        <div class="top">
+            <h1 class="title">Brett Davis</h1>
+            <button class="closeButton" ng-click="reader.closeDiscussions();"><i class="fa fa-close close-icon"></i></button>
+        </div>
+
         <h2>{{reader.vm.glossedItem.term}}</h2>
         <p>{{reader.vm.glossedItem.definition}}</p>
     </article>
